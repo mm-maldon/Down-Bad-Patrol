@@ -53,7 +53,7 @@ class Play extends Phaser.Scene {
         this.p1Score = 0;
 
         //display score
-          let scoreConfig = {
+        let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
             backgroundColor: '#F3B141',
@@ -96,18 +96,56 @@ class Play extends Phaser.Scene {
             this.ship02.update();
             this.ship03.update();
         }
+
+        let rocketRandom = 0;
         
 
         // check collisions
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
+            rocketRandom = Math.floor(Math.random() * 5);
+            if(rocketRandom == 0){
+                this.p1Rocket.setTexture('wow');
+            }else if(rocketRandom == 1){
+                this.p1Rocket.setTexture('yikes');
+            }else if(rocketRandom == 2){
+                this.p1Rocket.setTexture('brow');
+            }else if(rocketRandom == 3){
+                this.p1Rocket.setTexture('skull');
+            }else if(rocketRandom == 4){
+                this.p1Rocket.setTexture('clown');
+            }
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);
           }
           if (this.checkCollision(this.p1Rocket, this.ship02)) {
+            rocketRandom = Math.floor(Math.random() * 5);  
+            if(rocketRandom == 0){
+                this.p1Rocket.setTexture('wow');
+            }else if(rocketRandom == 1){
+                this.p1Rocket.setTexture('yikes');
+            }else if(rocketRandom == 2){
+                this.p1Rocket.setTexture('brow');
+            }else if(rocketRandom == 3){
+                this.p1Rocket.setTexture('skull');
+            }else if(rocketRandom == 4){
+                this.p1Rocket.setTexture('clown');
+            }
             this.p1Rocket.reset();
             this.shipExplode(this.ship02);
           }
-          if (this.checkCollision(this.p1Rocket, this.ship01)) {
+          if (this.checkCollision(this.p1Rocket, this.ship01)) {  
+            rocketRandom = Math.floor(Math.random() * 5);  
+            if(rocketRandom == 0){
+                this.p1Rocket.setTexture('wow');
+            }else if(rocketRandom == 1){
+                this.p1Rocket.setTexture('yikes');
+            }else if(rocketRandom == 2){
+                this.p1Rocket.setTexture('brow');
+            }else if(rocketRandom == 3){
+                this.p1Rocket.setTexture('skull');
+            }else if(rocketRandom == 4){
+                this.p1Rocket.setTexture('clown');
+            }
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
           }
