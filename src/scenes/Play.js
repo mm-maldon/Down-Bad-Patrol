@@ -61,6 +61,7 @@ class Play extends Phaser.Scene {
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding - 40, borderUISize + borderPadding*2 - 40, this.p1Score, scoreConfig);
 
+        // text config for labels (i.e. "Score", "Time")
         let labelConfig = {
             fontFamily: 'Verdana',
             fontSize: '16px',
@@ -117,7 +118,8 @@ class Play extends Phaser.Scene {
         }, null, this);
 
 
-
+        // Timer display. Special thanks to Denae on the class Discord for
+        // help getting the time in seconds
         let timerConfig = {
             fontFamily: 'Verdana',
             fontSize: '28px',
@@ -139,15 +141,6 @@ class Play extends Phaser.Scene {
 
         this.timeRight.text = Math.floor(this.clock.getRemainingSeconds());
 
-        // check key input for restart
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
-            this.scene.restart();
-        }
-
-        if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-            this.scene.start("menu");
-        }
-
         // update spaceships (x3)
         if (!this.gameOver) {
             this.p1Rocket.update();
@@ -157,7 +150,7 @@ class Play extends Phaser.Scene {
         }
 
         let rocketRandom = 0;
-        // check collisions
+        // check collisions and randomize new Rocket/emoji
         if(this.checkCollision(this.p1Rocket, this.ship03)) {
             this.rocketRandom = Math.floor(Math.random() * 5);
             if(rocketRandom == 0){
@@ -236,6 +229,7 @@ class Play extends Phaser.Scene {
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
 
+        // Play correct sound based on emoji
         if(this.p1Rocket.texture.key == 'clown'){
             this.sound.play('clownhorn', {volume: 0.3});
         }else if(this.p1Rocket.texture.key == 'skull'){
