@@ -1,5 +1,10 @@
 //Credits:
 // Sound effects:
+// Bell sound:
+//
+// Clown sound:
+//
+// Boom sound:
 //
 // Emojis from OpenMoji
 // https://openmoji.org/
