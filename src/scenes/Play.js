@@ -13,6 +13,7 @@ class Play extends Phaser.Scene {
         this.load.image('clown', 'assets/clown.png');
         this.load.image('wyd', 'assets/wyd.png');
         this.load.image('up', 'assets/up.png');
+        this.load.image('gameover', 'assets/gameover.png');
         this.load.image('heyy', 'assets/heyy.png');
         this.load.image('background', 'assets/background.png');
         this.load.spritesheet('explosion', 'assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 3});
@@ -73,6 +74,19 @@ class Play extends Phaser.Scene {
         }
 
         this.scoreLabel = this.add.text(borderUISize + borderPadding - 50, borderUISize + borderPadding*2 - 55, "Score", labelConfig);
+
+        //config for game over menu buttons
+        let menuConfig = {
+            fontFamily: 'Verdana',
+            fontSize: '18px',
+            color: '#3f48cc',
+            align: 'center',
+            padding: {
+              top: 5,
+              bottom: 5,
+            },
+            fixedWidth: 0
+        }
         
         //GAME OVER flag
         this.gameOver = false;
@@ -80,8 +94,25 @@ class Play extends Phaser.Scene {
         //play clock
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
+            //Game over image
+            this.add.tileSprite(game.config.width/2, game.config.height/2, 313, 230, 'gameover').setOrigin(0.5,0.5);
+
+            // Game over restart button
+            this.restartButton = this.add.text(game.config.width/2 - 80, game.config.height/2 + 90, 'Restart', menuConfig).setOrigin(0.5);
+            this.add.existing(this.restartButton);
+            this.restartButton.setInteractive();
+            this.restartButton.on('pointerup', () => {
+                this.scene.start('play');
+            });
+
+            // Game over menu button
+            this.menuButton = this.add.text(game.config.width/2 + 75, game.config.height/2 + 90, 'Title', menuConfig).setOrigin(0.5);
+            this.add.existing(this.menuButton);
+            this.menuButton.setInteractive();
+            this.menuButton.on('pointerup', () => {
+                this.scene.start('menu');
+            });
+
             this.gameOver = true;
         }, null, this);
 
