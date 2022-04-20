@@ -1,7 +1,8 @@
-// Malachi Maldonado
+// DOWN BAD PATROL
+// by Malachi Maldonado
 // CMPM120 
 // Developed with help from Eliana Cadelina and Denae :p on the class Discord.
-// Based on code by Adam Smith. 
+// Based on code by Adam Smith. This mod project took roughly 10 hours.
 // =================Mod Breakdown======================
 // - Redesign the game's artwork, UI, and sound to change its theme/aesthetic (60)
 //      Changed the theme to a phone UI, where the player has to ward off unwanted
