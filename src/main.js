@@ -1,5 +1,3 @@
-console.log("Hello from main.js");
-
 //Credits:
 // Sound effects:
 //
