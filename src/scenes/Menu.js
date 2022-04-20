@@ -10,9 +10,15 @@ class Menu extends Phaser.Scene {
         this.load.audio('clownhorn', 'assets/clownhorn.wav');
         this.load.audio('churchbell', 'assets/churchbell.wav');
         this.load.audio('sfx_rocket', 'assets/assets_rocket_shot.wav');
+
+        // load title screen
+        this.load.image('titlescreen', 'assets/titlescreen.png');
     }
     
     create() {
+
+        this.bg = this.add.tileSprite(0,0, 640,480, 'titlescreen').setOrigin(0,0);
+
         // menu text configuration
         let menuConfig = {
             fontFamily: 'Courier',

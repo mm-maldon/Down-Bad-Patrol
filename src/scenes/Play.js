@@ -48,10 +48,9 @@ class Play extends Phaser.Scene {
 
         //display score
         let scoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Verdana',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            color: '#000000',
             align: 'right',
             padding: {
               top: 5,
@@ -59,7 +58,21 @@ class Play extends Phaser.Scene {
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
+        this.scoreLeft = this.add.text(borderUISize + borderPadding - 40, borderUISize + borderPadding*2 - 40, this.p1Score, scoreConfig);
+
+        let labelConfig = {
+            fontFamily: 'Verdana',
+            fontSize: '16px',
+            color: '#000000',
+            align: 'right',
+            padding: {
+              top: 5,
+              bottom: 5,
+            },
+            fixedWidth: 100
+        }
+
+        this.scoreLabel = this.add.text(borderUISize + borderPadding - 50, borderUISize + borderPadding*2 - 55, "Score", labelConfig);
         
         //GAME OVER flag
         this.gameOver = false;
@@ -71,9 +84,30 @@ class Play extends Phaser.Scene {
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+
+
+
+        let timerConfig = {
+            fontFamily: 'Verdana',
+            fontSize: '28px',
+            color: '#000000',
+            align: 'right',
+            padding: {
+              top: 5,
+              bottom: 5,
+            },
+            fixedWidth: 100
+        }
+        timerConfig.fixedWidth = 0;
+        this.timeRight = this.add.text(game.config.width - 85, 20,  this.clock.getRemainingSeconds(), timerConfig);
+        this.timeLabel = this.add.text(game.config.width - 150, borderUISize + borderPadding*2 - 55, "Time", labelConfig);
+
     }
 
     update() {
+
+        this.timeRight.text = Math.floor(this.clock.getRemainingSeconds());
+
         // check key input for restart
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
@@ -172,11 +206,11 @@ class Play extends Phaser.Scene {
         this.scoreLeft.text = this.p1Score;
 
         if(this.p1Rocket.texture.key == 'clown'){
-            this.sound.play('clownhorn');
+            this.sound.play('clownhorn', {volume: 0.3});
         }else if(this.p1Rocket.texture.key == 'skull'){
             this.sound.play('churchbell');
         }else{
-            this.sound.play('vineboom');
+            this.sound.play('vineboom', {volume: 0.3});
         }
         
     }
