@@ -33,7 +33,7 @@ class Menu extends Phaser.Scene {
         }
 
         // display difficulty buttons and start game on click
-        this.easyButton = this.add.text(game.config.width/2 - 80, game.config.height/2 + 90, 'New Recruit', menuConfig).setOrigin(0.5);
+        this.easyButton = this.add.text(game.config.width/2 - 80, game.config.height/2 + 90, 'Rookie', menuConfig).setOrigin(0.5);
         this.add.existing(this.easyButton);
         this.easyButton.setInteractive();
         this.easyButton.on('pointerup', () => {
